@@ -1,10 +1,6 @@
 # Cloudflare Pages Redirects
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
-/admin
-  /admin/
-  301
-
-/contact/success
-  /contact/success/
-  302
+# Cloudflare Pages Redirects
+/admin                  /admin/                 301
+/contact/success        /contact/success/       302
