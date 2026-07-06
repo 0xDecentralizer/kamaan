@@ -4,7 +4,7 @@
   "description": "سایت کمان — موسیقی سنتی ایران",
   "scripts": {
     "dev": "eleventy --serve",
-    "build": "eleventy",
+    "build": "npx @11ty/eleventy",
     "clean": "rm -rf _site"
   },
   "devDependencies": {
