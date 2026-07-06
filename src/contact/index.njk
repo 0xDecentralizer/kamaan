@@ -1,0 +1,49 @@
+---
+layout: base.njk
+title: "تماس با ما — کمان"
+---
+
+<section class="section" style="max-width: 900px; margin: 0 auto;">
+  <h1 class="section-title">تماس با ما</h1>
+  <p class="section-sub">پیشنهادات و بازخوردهای خود را با ما به اشتراک بگذارید</p>
+  <div class="contact-grid">
+    <form class="contact-form" name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact">
+      <div class="form-group">
+        <label class="form-label" for="name">نام</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="نام خود را وارد کنید">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">ایمیل</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="subject">موضوع</label>
+        <input class="form-input" type="text" id="subject" name="subject" placeholder="موضوع پیام">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">پیام</label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="پیام خود را بنویسید..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+        ارسال پیام
+      </button>
+    </form>
+    <div class="contact-info">
+      <div class="contact-info-card">
+        <h3>کانال تلگرام</h3>
+        <p>برای دریافت جدیدترین موسیقی‌ها و مطالب فرهنگی، در کانال تلگرام ما عضو شوید.</p>
+        <a href="{{ site.telegramUrl }}" target="_blank">عضویت در کانال</a>
+      </div>
+      <div class="contact-info-card">
+        <h3>ایمیل</h3>
+        <p>برای همکاری، پیشنهادات و انتقادات با ما در تماس باشید.</p>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+      <div class="contact-info-card">
+        <h3>شبکه‌های اجتماعی</h3>
+        <p>ما را در شبکه‌های اجتماعی دنبال کنید و از آخرین اخبار مطلع شوید.</p>
+      </div>
+    </div>
+  </div>
+</section>

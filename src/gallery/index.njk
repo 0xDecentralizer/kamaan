@@ -1,0 +1,269 @@
+---
+layout: base.njk
+title: "گالری — کمان"
+description: "گالری تصاویر سازهای ایرانی، کنسرت‌ها و تصاویر هنری موسیقی سنتی ایران"
+---
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb" aria-label="مسیر صفحه">
+  <ol>
+    <li><a href="/">خانه</a></li>
+    <li aria-current="page">گالری</li>
+  </ol>
+</nav>
+
+<section class="section">
+  <h1 class="section-title">گالری</h1>
+  <p class="section-sub">تصاویر سازها، کنسرت‌ها و لحظات موسیقی</p>
+
+  <!-- Gallery Filter -->
+  <div class="category-filter" role="tablist" aria-label="فیلتر گالری">
+    <button class="category-btn active" data-category="all" role="tab" aria-selected="true">همه</button>
+    <button class="category-btn" data-category="instruments" role="tab" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      سازها
+    </button>
+    <button class="category-btn" data-category="concerts" role="tab" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      کنسرت‌ها
+    </button>
+    <button class="category-btn" data-category="art" role="tab" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2.5"/><path d="M3 22l4-11 4 3 4-8 4 8 4-3-4 11"/></svg>
+      هنری
+    </button>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div class="gallery-grid" id="galleryGrid">
+    
+    <!-- Instrument Cards with beautiful SVG art -->
+    <div class="gallery-item" data-category="instruments">
+      <div class="gallery-visual gallery-visual--kamancheh">
+        <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="kamancheh-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8B4513;stop-opacity:0.8"/>
+              <stop offset="50%" style="stop-color:#D2691E;stop-opacity:0.6"/>
+              <stop offset="100%" style="stop-color:#8B4513;stop-opacity:0.8"/>
+            </linearGradient>
+          </defs>
+          <!-- Kamancheh body -->
+          <ellipse cx="100" cy="220" rx="45" ry="35" fill="url(#kamancheh-grad)" stroke="#5C3317" stroke-width="2"/>
+          <ellipse cx="100" cy="220" rx="30" ry="22" fill="none" stroke="#8B4513" stroke-width="1" opacity="0.5"/>
+          <!-- Neck -->
+          <rect x="96" y="60" width="8" height="160" rx="4" fill="#D2691E" stroke="#5C3317" stroke-width="1.5"/>
+          <!-- Pegbox -->
+          <rect x="92" y="40" width="16" height="24" rx="3" fill="#8B4513" stroke="#5C3317" stroke-width="1.5"/>
+          <!-- Tuning pegs -->
+          <circle cx="88" cy="48" r="4" fill="#5C3317"/>
+          <circle cx="112" cy="48" r="4" fill="#5C3317"/>
+          <circle cx="88" cy="58" r="4" fill="#5C3317"/>
+          <circle cx="112" cy="58" r="4" fill="#5C3317"/>
+          <!-- Strings -->
+          <line x1="96" y1="62" x2="96" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="100" y1="62" x2="100" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="104" y1="62" x2="104" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <!-- Bow -->
+          <path d="M150 100 Q160 180 150 260" stroke="#8B4513" stroke-width="3" fill="none"/>
+          <line x1="150" y1="100" x2="150" y2="260" stroke="#C0C0C0" stroke-width="0.8" opacity="0.5"/>
+          <!-- Sound holes -->
+          <path d="M85 210 Q100 200 115 210" stroke="#5C3317" stroke-width="1" fill="none"/>
+          <path d="M85 230 Q100 240 115 230" stroke="#5C3317" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="gallery-info">
+        <h3 class="gallery-title">کمانچه</h3>
+        <p class="gallery-desc">ساز زهی کمانی با صدای گرم و احساسی. از مهم‌ترین سازهای موسیقی سنتی ایران که ریشه در تاریخ کهن این سرزمین دارد.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="instruments">
+      <div class="gallery-visual gallery-visual--setar">
+        <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="setar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#B8860B;stop-opacity:0.8"/>
+              <stop offset="50%" style="stop-color:#DAA520;stop-opacity:0.6"/>
+              <stop offset="100%" style="stop-color:#B8860B;stop-opacity:0.8"/>
+            </linearGradient>
+          </defs>
+          <!-- Body -->
+          <ellipse cx="100" cy="225" rx="40" ry="30" fill="url(#setar-grad)" stroke="#8B6914" stroke-width="2"/>
+          <!-- Sound hole -->
+          <circle cx="100" cy="225" r="15" fill="none" stroke="#8B6914" stroke-width="1.5"/>
+          <circle cx="100" cy="225" r="8" fill="none" stroke="#8B6914" stroke-width="0.8" opacity="0.5"/>
+          <!-- Neck -->
+          <rect x="97" y="60" width="6" height="165" rx="3" fill="#DAA520" stroke="#8B6914" stroke-width="1.5"/>
+          <!-- Pegbox -->
+          <rect x="93" y="38" width="14" height="24" rx="3" fill="#B8860B" stroke="#8B6914" stroke-width="1.5"/>
+          <!-- Tuning pegs -->
+          <circle cx="90" cy="46" r="3.5" fill="#8B6914"/>
+          <circle cx="110" cy="46" r="3.5" fill="#8B6914"/>
+          <circle cx="90" cy="55" r="3.5" fill="#8B6914"/>
+          <!-- Strings -->
+          <line x1="98" y1="62" x2="98" y2="225" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="100" y1="62" x2="100" y2="225" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="102" y1="62" x2="102" y2="225" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <!-- Bridge -->
+          <rect x="92" y="215" width="16" height="3" rx="1" fill="#8B6914"/>
+        </svg>
+      </div>
+      <div class="gallery-info">
+        <h3 class="gallery-title">سه‌تار</h3>
+        <p class="gallery-desc">ساز زهی با چهار سیم که در سبک‌های مختلف موسیقی ایرانی کاربرد دارد. صدای ظریف و شاعرانه‌اش زبانزد است.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="instruments">
+      <div class="gallery-visual gallery-visual--tar">
+        <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="tar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#CD853F;stop-opacity:0.8"/>
+              <stop offset="50%" style="stop-color:#DEB887;stop-opacity:0.6"/>
+              <stop offset="100%" style="stop-color:#CD853F;stop-opacity:0.8"/>
+            </linearGradient>
+          </defs>
+          <!-- Double-bowl body -->
+          <path d="M50 210 Q50 180 75 180 Q100 180 100 200 Q100 180 125 180 Q150 180 150 210 Q150 250 100 260 Q50 250 50 210Z" fill="url(#tar-grad)" stroke="#8B6914" stroke-width="2"/>
+          <!-- Sound hole -->
+          <circle cx="75" cy="220" r="10" fill="none" stroke="#8B6914" stroke-width="1.2"/>
+          <circle cx="125" cy="220" r="10" fill="none" stroke="#8B6914" stroke-width="1.2"/>
+          <!-- Neck -->
+          <rect x="95" y="60" width="10" height="120" rx="3" fill="#DEB887" stroke="#8B6914" stroke-width="1.5"/>
+          <!-- Pegbox -->
+          <rect x="90" y="36" width="20" height="26" rx="3" fill="#CD853F" stroke="#8B6914" stroke-width="1.5"/>
+          <!-- Tuning pegs -->
+          <circle cx="86" cy="44" r="3.5" fill="#8B6914"/>
+          <circle cx="114" cy="44" r="3.5" fill="#8B6914"/>
+          <circle cx="86" cy="54" r="3.5" fill="#8B6914"/>
+          <circle cx="114" cy="54" r="3.5" fill="#8B6914"/>
+          <!-- Strings -->
+          <line x1="96" y1="62" x2="75" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="98" y1="62" x2="90" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="100" y1="62" x2="100" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="102" y1="62" x2="110" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <line x1="104" y1="62" x2="125" y2="220" stroke="#C0C0C0" stroke-width="0.5" opacity="0.7"/>
+          <!-- Bridge -->
+          <rect x="88" y="210" width="24" height="3" rx="1" fill="#8B6914"/>
+        </svg>
+      </div>
+      <div class="gallery-info">
+        <h3 class="gallery-title">تار</h3>
+        <p class="gallery-desc">ساز زهی با شش سیم و دسته‌ی بلند، نماد موسیقی سنتی ایران. صدای غنی و پرطنین آن در هر مجلسی می‌درخشد.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="instruments">
+      <div class="gallery-visual gallery-visual--ney">
+        <svg viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ney-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8B7355;stop-opacity:0.8"/>
+              <stop offset="50%" style="stop-color:#A0926B;stop-opacity:0.6"/>
+              <stop offset="100%" style="stop-color:#8B7355;stop-opacity:0.8"/>
+            </linearGradient>
+          </defs>
+          <!-- Ney tube -->
+          <rect x="90" y="30" width="20" height="220" rx="10" fill="url(#ney-grad)" stroke="#6B5B3D" stroke-width="2"/>
+          <!-- Nodes -->
+          <ellipse cx="100" cy="80" rx="11" ry="3" fill="#6B5B3D" opacity="0.5"/>
+          <ellipse cx="100" cy="130" rx="11" ry="3" fill="#6B5B3D" opacity="0.5"/>
+          <ellipse cx="100" cy="180" rx="11" ry="3" fill="#6B5B3D" opacity="0.5"/>
+          <!-- Finger holes -->
+          <circle cx="100" cy="95" r="4" fill="#4A3520" opacity="0.6"/>
+          <circle cx="100" cy="115" r="4" fill="#4A3520" opacity="0.6"/>
+          <circle cx="100" cy="145" r="4" fill="#4A3520" opacity="0.6"/>
+          <circle cx="100" cy="165" r="4" fill="#4A3520" opacity="0.6"/>
+          <!-- Blow hole -->
+          <ellipse cx="100" cy="45" rx="6" ry="4" fill="#4A3520" opacity="0.4"/>
+          <!-- Decorative bands -->
+          <rect x="89" y="55" width="22" height="2" rx="1" fill="#DAA520" opacity="0.4"/>
+          <rect x="89" y="215" width="22" height="2" rx="1" fill="#DAA520" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="gallery-info">
+        <h3 class="gallery-title">نی</h3>
+        <p class="gallery-desc">ساز بادی باستانی ایرانی. صدای روح‌انگیز آن همواره با شعر و عرفان پیوند خورده است.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="concerts">
+      <div class="gallery-visual gallery-visual--concert">
+        <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stage -->
+          <rect x="20" y="120" width="160" height="8" rx="2" fill="#3b82f6" opacity="0.1"/>
+          <!-- Curtains -->
+          <path d="M20 10 Q30 60 20 120" stroke="#3b82f6" stroke-width="1.5" fill="none" opacity="0.3"/>
+          <path d="M180 10 Q170 60 180 120" stroke="#3b82f6" stroke-width="1.5" fill="none" opacity="0.3"/>
+          <!-- Musician silhouette -->
+          <circle cx="100" cy="65" r="12" fill="#1e3a5f" opacity="0.2"/>
+          <path d="M88 77 Q100 100 112 77" fill="#1e3a5f" opacity="0.15"/>
+          <!-- Kamancheh silhouette -->
+          <ellipse cx="120" cy="85" rx="10" ry="8" fill="#3b82f6" opacity="0.1"/>
+          <line x1="120" y1="77" x2="120" y2="45" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+          <!-- Music notes -->
+          <text x="60" y="50" font-size="20" fill="#3b82f6" opacity="0.2">♪</text>
+          <text x="140" y="40" font-size="16" fill="#16a34a" opacity="0.2">♫</text>
+          <text x="80" y="35" font-size="14" fill="#3b82f6" opacity="0.15">♩</text>
+          <!-- Spotlight -->
+          <ellipse cx="100" cy="115" rx="40" ry="6" fill="#3b82f6" opacity="0.08"/>
+        </svg>
+      </div>
+      <div class="gallery-info">
+        <h3 class="gallery-title">کنسرت</h3>
+        <p class="gallery-desc">لحظه‌های جادویی اجرای زنده موسیقی سنتی ایرانی روی صحنه.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-category="art">
+      <div class="gallery-visual gallery-visual--calligraphy">
+        <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Persian carpet pattern -->
+          <rect x="30" y="20" width="140" height="120" rx="4" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+          <rect x="40" y="30" width="120" height="100" rx="2" fill="none" stroke="#16a34a" stroke-width="0.8" opacity="0.15"/>
+          <!-- Geometric pattern -->
+          <g opacity="0.2">
+            <path d="M100 40 L120 70 L100 100 L80 70Z" stroke="#3b82f6" stroke-width="1" fill="none"/>
+            <path d="M100 50 L112 70 L100 90 L88 70Z" stroke="#16a34a" stroke-width="0.8" fill="none"/>
+            <circle cx="100" cy="70" r="8" stroke="#3b82f6" stroke-width="0.8" fill="none"/>
+            <circle cx="100" cy="70" r="3" fill="#3b82f6" opacity="0.3"/>
+          </g>
+          <!-- Corner ornaments -->
+          <g opacity="0.15">
+            <path d="M45 35 L55 45 L45 55 L35 45Z" stroke="#3b82f6" stroke-width="0.8" fill="none"/>
+            <path d="M155 35 L165 45 L155 55 L145 45Z" stroke="#3b82f6" stroke-width="0.8" fill="none"/>
+            <path d="M45 105 L55 115 L45 125 L35 115Z" stroke="#3b82f6" stroke-width="0.8" fill="none"/>
+            <path d="M155 105 L165 115 L155 125 L145 115Z" stroke="#3b82f6" stroke-width="0.8" fill="none"/>
+          </g>
+          <!-- Text hint -->
+          <text x="100" y="75" text-anchor="middle" font-size="10" fill="#3b82f6" opacity="0.3" font-family="serif">کمان</text>
+        </svg>
+      </div>
+      <div class="gallery-info">
+        <h3 class="gallery-title">هنر ایرانی</h3>
+        <p class="gallery-desc">نقش‌ونگارهای اصیل ایرانی که الهام‌بخش موسیقی و هنر این سرزمین هستند.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+  const btns = document.querySelectorAll('.category-btn');
+  const items = document.querySelectorAll('.gallery-item');
+  
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const cat = btn.dataset.category;
+      items.forEach(item => {
+        item.style.display = (cat === 'all' || item.dataset.category === cat) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>

@@ -1,0 +1,16 @@
+{
+  "name": "kamaan",
+  "version": "2.0.0",
+  "description": "سایت کمان — موسیقی سنتی ایران",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.2",
+    "@11ty/eleventy-img": "^5.0.0",
+    "luxon": "^3.5.0"
+  }
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or site.title }}</title>
+  <meta name="description" content="{{ description or excerpt or site.description }}">
+  <meta name="author" content="{{ site.author.name }}">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ description or excerpt or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="کمان — موسیقی سنتی ایران">
+  <meta property="og:locale" content="fa_IR">
+  {% if ogImage %}
+  <meta property="og:image" content="{{ site.url }}{{ ogImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% else %}
+  <meta property="og:image" content="{{ site.url }}{{ site.ogImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% endif %}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or site.title }}">
+  <meta name="twitter:description" content="{{ description or excerpt or site.description }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ ogImage or site.ogImage }}">
+
+  <!-- Structured Data -->
+  {% if page.url == '/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "description": "{{ site.description }}",
+    "url": "{{ site.url }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ site.url }}/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  {% endif %}
+
+  {% if page.url == '/about/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "description": "{{ site.author.bio }}",
+    "jobTitle": "{{ site.author.role }}",
+    "knowsAbout": ["موسیقی سنتی ایران", "کمانچه", "سه‌تار", "تار"],
+    "sameAs": [
+      "{{ site.social.telegram }}"
+    ]
+  }
+  </script>
+  {% endif %}
+
+  {% if layout == "article.njk" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ title }}",
+    "description": "{{ description or excerpt }}",
+    "datePublished": "{{ page.date | dateISO }}",
+    "author": {
+      "@type": "Organization",
+      "name": "{{ site.author.name }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "کمان — موسیقی سنتی ایران",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/images/logo.svg"
+      }
+    }
+  }
+  </script>
+  {% endif %}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  <link rel="apple-touch-icon" href="/images/logo-192.svg">
+  <meta name="theme-color" content="#3b82f6">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Fonts: Vazirmatn for Persian -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles/styles.css">
+
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="کمان — موسیقی سنتی ایران" href="{{ site.url }}/feed.xml">
+</head>
+<body>
+
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-link">رفتن به محتوای اصلی</a>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="منوی اصلی">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand" aria-label="کمان - خانه">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32">
+          <path d="M16 2 L28 16 L16 30 L4 16Z" stroke="#3b82f6" stroke-width="2" fill="none"/>
+          <path d="M16 8 L23 16 L16 24 L9 16Z" fill="#16a34a" opacity="0.3"/>
+          <circle cx="16" cy="16" r="3" fill="#3b82f6"/>
+        </svg>
+        <span>کمان</span>
+      </a>
+      
+      <ul class="nav-links" id="navLinks" role="menubar">
+        <li role="none"><a href="/" role="menuitem">خانه</a></li>
+        <li role="none"><a href="/#player" role="menuitem">موسیقی</a></li>
+        <li role="none"><a href="/articles/" role="menuitem">مقالات</a></li>
+        <li role="none"><a href="/gallery/" role="menuitem">گالری</a></li>
+        <li role="none"><a href="/archive/" role="menuitem">آرشیو</a></li>
+        <li role="none"><a href="/about/" role="menuitem">درباره</a></li>
+        <li role="none"><a href="/contact/" role="menuitem">تماس</a></li>
+      </ul>
+      
+      <a href="{{ site.telegramUrl }}" class="nav-cta" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        عضویت در کانال
+      </a>
+      
+      <button class="mobile-menu-btn" 
+              id="mobileMenuBtn"
+              onclick="document.getElementById('navLinks').classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')"
+              aria-label="باز کردن منو"
+              aria-expanded="false"
+              aria-controls="navLinks">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content" role="main">
+    {{ content | safe }}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>کمان</h3>
+          <p>{{ site.description }}</p>
+        </div>
+        <div class="footer-col">
+          <h4>لینک‌ها</h4>
+          <a href="/">خانه</a>
+          <a href="/#player">موسیقی</a>
+          <a href="/articles/">مقالات</a>
+          <a href="/gallery/">گالری</a>
+          <a href="/archive/">آرشیو</a>
+          <a href="/about/">درباره</a>
+        </div>
+        <div class="footer-col">
+          <h4>دسته‌بندی</h4>
+          <a href="/articles/?cat=تاریخ">تاریخ</a>
+          <a href="/articles/?cat=موسیقی">موسیقی</a>
+          <a href="/articles/?cat=شعر">شعر</a>
+          <a href="/articles/?cat=فرهنگ">فرهنگ</a>
+        </div>
+        <div class="footer-col">
+          <h4>تماس</h4>
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          <a href="{{ site.telegramUrl }}" target="_blank" rel="noopener">تلگرام</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© {{ 1389 | toPersianNum }}–{{ 1404 | toPersianNum }} کمان — تمامی حقوق محفوظ است</span>
+        <div class="footer-social">
+          <a href="{{ site.telegramUrl }}" target="_blank" rel="noopener" aria-label="تلگرام">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JS -->
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('navLinks').classList.remove('open');
+        }
+      });
+    });
+
+    // Reduce motion for users who prefer it
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motionQuery.matches) {
+      document.documentElement.style.scrollBehavior = 'auto';
+    }
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+      const navLinks = document.getElementById('navLinks');
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      if (navLinks && menuBtn && 
+          !navLinks.contains(e.target) && 
+          !menuBtn.contains(e.target)) {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

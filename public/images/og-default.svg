@@ -1,0 +1,27 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#f7faff"/>
+  <!-- Pattern -->
+  <g opacity="0.05">
+    <path d="M100 0 L200 100 L100 200 L0 100Z" fill="none" stroke="#3b82f6" stroke-width="1"/>
+    <path d="M300 0 L400 100 L300 200 L200 100Z" fill="none" stroke="#3b82f6" stroke-width="1"/>
+    <path d="M500 0 L600 100 L500 200 L400 100Z" fill="none" stroke="#3b82f6" stroke-width="1"/>
+    <path d="M700 0 L800 100 L700 200 L600 100Z" fill="none" stroke="#3b82f6" stroke-width="1"/>
+    <path d="M900 0 L1000 100 L900 200 L800 100Z" fill="none" stroke="#3b82f6" stroke-width="1"/>
+    <path d="M1100 0 L1200 100 L1100 200 L1000 100Z" fill="none" stroke="#3b82f6" stroke-width="1"/>
+  </g>
+  <!-- Logo -->
+  <g transform="translate(600, 250)">
+    <path d="M0 -120 L104 0 L0 120 L-104 0Z" stroke="url(#g)" stroke-width="6" fill="none"/>
+    <path d="M0 -68 L59 0 L0 68 L-59 0Z" fill="#16a34a" opacity="0.3"/>
+    <circle cx="0" cy="0" r="16" fill="#3b82f6" opacity="0.8"/>
+  </g>
+  <!-- Text -->
+  <text x="600" y="440" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#1e3a5f">کمان — موسیقی سنتی ایران</text>
+  <text x="600" y="490" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#7b9cc4">خانه‌ی موسیقی سنتی ایران</text>
+</svg>

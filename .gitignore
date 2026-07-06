@@ -1,0 +1,9 @@
+node_modules/
+_site/
+.cache/
+.DS_Store
+Thumbs.db
+.env
+.env.local
+*.log
+siteUI.zip

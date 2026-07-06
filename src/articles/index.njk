@@ -1,0 +1,185 @@
+---
+layout: base.njk
+title: "مقالات — کمان"
+description: "مقالات و مطالب فرهنگی درباره موسیقی سنتی ایران، تاریخ و فرهنگ ایران‌زمین"
+---
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb" aria-label="مسیر صفحه">
+  <ol>
+    <li><a href="/">خانه</a></li>
+    <li aria-current="page">مقالات</li>
+  </ol>
+</nav>
+
+<section class="section">
+  <h1 class="section-title">مقالات و مطالب فرهنگی</h1>
+  <p class="section-sub">از تاریخ و فرهنگ ایران‌زمین بخوانید</p>
+
+  <!-- Search Bar -->
+  <div class="articles-search-wrap">
+    <div class="articles-search">
+      <svg class="articles-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="search" 
+             id="articleSearch" 
+             class="articles-search-input" 
+             placeholder="جستجو در مقالات..." 
+             aria-label="جستجو در مقالات"
+             autocomplete="off">
+    </div>
+    <div class="articles-no-results" id="noResults" style="display: none;">
+      <p>مقاله‌ای با این عنوان یافت نشد</p>
+    </div>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="category-filter" role="tablist" aria-label="فیلتر دسته‌بندی">
+    <button class="category-btn active" data-category="all" role="tab" aria-selected="true">همه</button>
+    <button class="category-btn" data-category="تاریخ" role="tab" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      تاریخ
+    </button>
+    <button class="category-btn" data-category="موسیقی" role="tab" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      موسیقی
+    </button>
+    <button class="category-btn" data-category="شعر" role="tab" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      شعر
+    </button>
+    <button class="category-btn" data-category="فرهنگ" role="tab" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      فرهنگ
+    </button>
+  </div>
+
+  <!-- Articles Grid -->
+  <div class="blog-grid" id="articlesGrid">
+    {% for article in collections.articles %}
+    <a href="{{ article.url }}" class="blog-card" data-category="{{ article.data.category }}" data-title="{{ article.data.title }}" data-excerpt="{{ article.data.excerpt }}">
+      <div class="blog-card-img blog-card-img--{{ article.data.category | slugify }}">
+        <!-- Category-specific SVG -->
+        {% if article.data.category == "تاریخ" %}
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#3b82f6" stroke-width="1.2" opacity="0.5">
+            <rect x="12" y="8" width="36" height="44" rx="2" fill="none"/>
+            <line x1="18" y1="16" x2="42" y2="16"/>
+            <line x1="18" y1="24" x2="42" y2="24"/>
+            <line x1="18" y1="32" x2="36" y2="32"/>
+            <circle cx="30" cy="42" r="6" fill="none"/>
+            <path d="M30 36v12M24 42h12" stroke-width="1"/>
+          </g>
+        </svg>
+        {% elif article.data.category == "موسیقی" %}
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#16a34a" stroke-width="1.2" opacity="0.5">
+            <path d="M20 42V18l24-4v24"/>
+            <circle cx="16" cy="42" r="5" fill="none"/>
+            <circle cx="40" cy="38" r="5" fill="none"/>
+            <line x1="20" y1="26" x2="44" y2="22"/>
+            <line x1="20" y1="32" x2="44" y2="28"/>
+          </g>
+        </svg>
+        {% elif article.data.category == "شعر" %}
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#3b82f6" stroke-width="1.2" opacity="0.5">
+            <path d="M14 44l6-20 6 12 6-16 6 10 6-8" fill="none"/>
+            <circle cx="14" cy="44" r="2" fill="#3b82f6" opacity="0.3"/>
+            <path d="M10 48h40" stroke-dasharray="2 2"/>
+          </g>
+        </svg>
+        {% else %}
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#3b82f6" stroke-width="1.2" opacity="0.5">
+            <circle cx="30" cy="30" r="20" fill="none"/>
+            <circle cx="30" cy="30" r="12" fill="none" stroke-dasharray="3 3"/>
+            <circle cx="30" cy="30" r="4" fill="#3b82f6" opacity="0.2"/>
+            <path d="M30 10v-4M30 54v-4M10 30h-4M54 30h-4" stroke-width="0.8"/>
+          </g>
+        </svg>
+        {% endif %}
+        <span class="blog-card-tag">{{ article.data.category }}</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-meta">
+          <time datetime="{{ article.date | dateISO }}">{{ article.date | dateFormat }}</time>
+        </div>
+        <h3 class="blog-card-title">{{ article.data.title }}</h3>
+        <p class="blog-card-excerpt">{{ article.data.excerpt }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+  
+  const searchInput = document.getElementById('articleSearch');
+  const grid = document.getElementById('articlesGrid');
+  const noResults = document.getElementById('noResults');
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const cards = grid.querySelectorAll('.blog-card');
+  
+  let activeCategory = 'all';
+  
+  // Search + filter
+  function filterArticles() {
+    const query = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+    
+    cards.forEach(card => {
+      const title = (card.dataset.title || '').toLowerCase();
+      const excerpt = (card.dataset.excerpt || '').toLowerCase();
+      const category = card.dataset.category || '';
+      
+      const matchesSearch = !query || title.includes(query) || excerpt.includes(query);
+      const matchesCategory = activeCategory === 'all' || category === activeCategory;
+      
+      if (matchesSearch && matchesCategory) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+  
+  // Search input
+  searchInput.addEventListener('input', filterArticles);
+  
+  // Category buttons
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      categoryBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      activeCategory = btn.dataset.category;
+      filterArticles();
+    });
+  });
+  
+  // Keyboard navigation for category buttons
+  categoryBtns.forEach((btn, i) => {
+    btn.addEventListener('keydown', (e) => {
+      let next = i;
+      if (e.key === 'ArrowLeft') next = (i + 1) % categoryBtns.length;
+      if (e.key === 'ArrowRight') next = (i - 1 + categoryBtns.length) % categoryBtns.length;
+      if (next !== i) {
+        e.preventDefault();
+        categoryBtns[next].focus();
+        categoryBtns[next].click();
+      }
+    });
+  });
+})();
+</script>

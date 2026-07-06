@@ -1,0 +1,92 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+slug:
+  encoding: "ascii"
+  clean_accents: false
+  sanitize_replacement: "-"
+
+collections:
+  - name: "articles"
+    label: "مقالات"
+    folder: "src/articles"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "/articles/{{slug}}/"
+    fields:
+      - { label: "عنوان", name: "title", widget: "string" }
+      - { label: "توضیحات کوتاه", name: "excerpt", widget: "text" }
+      - { label: "دسته‌بندی", name: "category", widget: "select", options: ["تاریخ", "موسیقی", "شعر", "فرهنگ"] }
+      - { label: "تگ‌ها", name: "tags", widget: "list", allow_add: true, minimal: true }
+      - { label: "تصویر کاور", name: "image", widget: "image", required: false }
+      - { label: "متن مقاله", name: "body", widget: "markdown" }
+      - { label: "تاریخ انتشار", name: "date", widget: "datetime" }
+      - { label: "منتشر شده", name: "published", widget: "boolean", default: true }
+
+  - name: "music"
+    label: "موسیقی"
+    folder: "src/_data"
+    files:
+      - name: "music"
+        label: "لیست موسیقی"
+        file: "src/_data/music.json"
+        fields:
+          - label: "آهنگ‌ها"
+            name: "tracks"
+            widget: "list"
+            fields:
+              - { label: "عنوان", name: "title", widget: "string" }
+              - { label: "هنرمند", name: "artist", widget: "string" }
+              - { label: "ساز", name: "instrument", widget: "select", options: ["کمانچه", "سه‌تار", "تار", "نی", "سنتور"] }
+              - { label: "دستگاه", name: "dastgah", widget: "select", options: ["شور", "سه‌گاه", "چهارگاه", "ابوعطاء", "هیزج", "دشتی", "ماهور", "نوا"] }
+              - { label: "مدت زمان", name: "duration", widget: "string" }
+              - { label: "مدت زمان (ثانیه)", name: "durationSeconds", widget: "number" }
+              - { label: "لینک فایل صوتی", name: "url", widget: "string", required: false }
+              - { label: "تاریخ اضافه شدن", name: "dateAdded", widget: "datetime" }
+              - { label: "تگ‌ها", name: "tags", widget: "list", allow_add: true, minimal: true }
+          - label: "سازها"
+            name: "instruments"
+            widget: "list"
+            fields:
+              - { label: "نام ساز", name: "name", widget: "string" }
+              - { label: "توضیحات", name: "description", widget: "text" }
+
+  - name: "settings"
+    label: "تنظیمات"
+    files:
+      - name: "site"
+        label: "تنظیمات سایت"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "عنوان سایت", name: "title", widget: "string" }
+          - { label: "توضیحات", name: "description", widget: "text" }
+          - { label: "آدرس سایت", name: "url", widget: "string" }
+          - { label: "لینک تلگرام", name: "telegramUrl", widget: "string" }
+          - { label: "ایمیل", name: "email", widget: "string" }
+          - { label: "تصویر OG", name: "ogImage", widget: "string" }
+          - label: "آمار کانال"
+            name: "channelStats"
+            widget: "object"
+            fields:
+              - { label: "تعداد عضو", name: "members", widget: "string" }
+              - { label: "درصد ارگانیک", name: "organic", widget: "string" }
+              - { label: "تعداد موسیقی", name: "tracks", widget: "string" }
+          - label: "نویسنده"
+            name: "author"
+            widget: "object"
+            fields:
+              - { label: "نام", name: "name", widget: "string" }
+              - { label: "عنوان", name: "role", widget: "string" }
+              - { label: "بیوگرافی", name: "bio", widget: "text" }
+          - label: "شبکه‌های اجتماعی"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "تلگرام", name: "telegram", widget: "string" }
+              - { label: "اینستاگرام", name: "instagram", widget: "string" }
+              - { label: "توییتر", name: "twitter", widget: "string" }
+              - { label: "یوتیوب", name: "youtube", widget: "string" }

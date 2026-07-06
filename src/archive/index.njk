@@ -1,0 +1,347 @@
+---
+layout: base.njk
+title: "آرشیو — کمان"
+description: "آرشیو کامل موسیقی‌ها، آلبوم‌ها، کنسرت‌ها و ویدیوهای کیهان کلهر و گروه کمان"
+---
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb" aria-label="مسیر صفحه">
+  <ol>
+    <li><a href="/">خانه</a></li>
+    <li aria-current="page">آرشیو</li>
+  </ol>
+</nav>
+
+<section class="section archive-section">
+  <h1 class="section-title">آرشیو</h1>
+  <p class="section-sub">مجموعه‌ی کامل آلبوم‌ها، تک‌آهنگ‌ها، کنسرت‌ها و ویدیوها</p>
+
+  <!-- Stats Bar -->
+  <div class="archive-stats">
+    <div class="archive-stat">
+      <span class="archive-stat-num" id="totalCount">{{ archive.items | length }}</span>
+      <span class="archive-stat-label">مجموع قطعات</span>
+    </div>
+    <div class="archive-stat">
+      <span class="archive-stat-num" id="albumCount">۰</span>
+      <span class="archive-stat-label">آلبوم</span>
+    </div>
+    <div class="archive-stat">
+      <span class="archive-stat-num" id="singleCount">۰</span>
+      <span class="archive-stat-label">تک‌آهنگ</span>
+    </div>
+    <div class="archive-stat">
+      <span class="archive-stat-num" id="concertCount">۰</span>
+      <span class="archive-stat-label">کنسرت</span>
+    </div>
+    <div class="archive-stat">
+      <span class="archive-stat-num" id="videoCount">۰</span>
+      <span class="archive-stat-label">ویدیو</span>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="archive-search-wrap">
+    <div class="archive-search">
+      <svg class="archive-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="search" 
+             id="archiveSearch" 
+             class="archive-search-input" 
+             placeholder="جستجو در آرشیو..." 
+             aria-label="جستجو در آرشیو"
+             autocomplete="off">
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="archive-filters">
+    <!-- Type Filter -->
+    <div class="filter-group">
+      <label class="filter-label">نوع</label>
+      <div class="filter-chips" role="radiogroup" aria-label="فیلتر نوع">
+        <button class="filter-chip active" data-filter="type" data-value="همه" role="radio" aria-checked="true">همه</button>
+        {% for type in archive.types %}
+          {% if type != "همه" %}
+          <button class="filter-chip" data-filter="type" data-value="{{ type }}" role="radio" aria-checked="false">
+            {% if type == "آلبوم" %}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            {% elif type == "تک‌آهنگ" %}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            {% elif type == "کنسرت" %}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14v-4z"/><rect x="1" y="6" width="15" height="12" rx="2" ry="2"/></svg>
+            {% elif type == "ویدیو" %}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            {% endif %}
+            {{ type }}
+          </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Genre Filter -->
+    <div class="filter-group">
+      <label class="filter-label">ژانر</label>
+      <div class="filter-chips" role="radiogroup" aria-label="فیلتر ژانر">
+        <button class="filter-chip active" data-filter="genre" data-value="همه" role="radio" aria-checked="true">همه</button>
+        {% for genre in archive.genres %}
+          {% if genre != "همه" %}
+          <button class="filter-chip" data-filter="genre" data-value="{{ genre }}" role="radio" aria-checked="false">{{ genre }}</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Instrument Filter -->
+    <div class="filter-group">
+      <label class="filter-label">ساز</label>
+      <div class="filter-chips" role="radiogroup" aria-label="فیلتر ساز">
+        <button class="filter-chip active" data-filter="instrument" data-value="همه" role="radio" aria-checked="true">همه</button>
+        {% for inst in archive.instruments %}
+          {% if inst != "همه" %}
+          <button class="filter-chip" data-filter="instrument" data-value="{{ inst }}" role="radio" aria-checked="false">{{ inst }}</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Filters Summary -->
+  <div class="archive-filter-summary" id="filterSummary" style="display: none;">
+    <span class="filter-summary-text">فیلتر فعال:</span>
+    <span class="filter-summary-tags" id="filterTags"></span>
+    <button class="filter-clear-btn" id="clearFilters">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      پاک کردن فیلترها
+    </button>
+  </div>
+
+  <!-- Results Count -->
+  <div class="archive-results-count" id="resultsCount">
+    <span id="visibleCount">{{ archive.items | length }}</span> نتیجه
+  </div>
+
+  <!-- Archive Grid -->
+  <div class="archive-grid" id="archiveGrid">
+    {% for item in archive.items %}
+    <div class="archive-card" 
+         data-type="{{ item.type }}"
+         data-genre="{{ item.genre }}"
+         data-instruments="{{ item.instruments | join(',') }}"
+         data-title="{{ item.title }}"
+         data-artist="{{ item.artist }}"
+         data-description="{{ item.description }}">
+      
+      <!-- Card Header -->
+      <div class="archive-card-header">
+        <div class="archive-card-type archive-card-type--{{ item.type }}">
+          {% if item.type == "آلبوم" %}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          {% elif item.type == "تک‌آهنگ" %}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          {% elif item.type == "کنسرت" %}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14v-4z"/><rect x="1" y="6" width="15" height="12" rx="2"/></svg>
+          {% elif item.type == "ویدیو" %}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          {% endif %}
+          {{ item.type }}
+        </div>
+        <span class="archive-card-year">{{ item.year }}</span>
+      </div>
+
+      <!-- Card Body -->
+      <div class="archive-card-body">
+        <h3 class="archive-card-title">{{ item.title }}</h3>
+        <div class="archive-card-artist">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          {{ item.artist }}
+        </div>
+        <p class="archive-card-desc">{{ item.description }}</p>
+        
+        <!-- Tags -->
+        <div class="archive-card-tags">
+          {% for inst in item.instruments %}
+          <span class="archive-tag archive-tag--instrument">{{ inst }}</span>
+          {% endfor %}
+          {% if item.genre %}
+          <span class="archive-tag archive-tag--genre">{{ item.genre }}</span>
+          {% endif %}
+          {% if item.dastgah %}
+          <span class="archive-tag archive-tag--dastgah">{{ item.dastgah }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Track List (for albums/concerts) -->
+      {% if item.tracks and item.tracks.length > 0 %}
+      <div class="archive-card-tracks">
+        <button class="archive-tracks-toggle" aria-expanded="false" aria-controls="tracks-{{ item.id }}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          {{ item.tracks | length }} قطعه
+        </button>
+        <div class="archive-tracks-list" id="tracks-{{ item.id }}" hidden>
+          {% for track in item.tracks %}
+          <div class="archive-track">
+            <span class="archive-track-num">{{ loop.index | toPersianNum }}</span>
+            <span class="archive-track-title">{{ track.title }}</span>
+            <span class="archive-track-dur">{{ track.duration }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Empty State -->
+  <div class="archive-empty" id="archiveEmpty" style="display: none;">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 60px; margin: 0 auto 16px; opacity: 0.3;" aria-hidden="true">
+      <g stroke="#3b82f6" stroke-width="1.5">
+        <circle cx="40" cy="40" r="30" fill="none"/>
+        <line x1="40" y1="25" x2="40" y2="45"/>
+        <circle cx="40" cy="55" r="2" fill="#3b82f6"/>
+      </g>
+    </svg>
+    <h3 style="font-size: 18px; margin-bottom: 8px;">نتیجه‌ای یافت نشد</h3>
+    <p style="color: var(--muted);">فیلترها را تغییر دهید یا عبارت جستجو را اصلاح کنید</p>
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+  
+  const archiveItems = {{ archive.items | json | safe }};
+  const grid = document.getElementById('archiveGrid');
+  const cards = grid.querySelectorAll('.archive-card');
+  const searchInput = document.getElementById('archiveSearch');
+  const filterSummary = document.getElementById('filterSummary');
+  const filterTags = document.getElementById('filterTags');
+  const clearFiltersBtn = document.getElementById('clearFilters');
+  const visibleCountEl = document.getElementById('visibleCount');
+  const emptyState = document.getElementById('archiveEmpty');
+  
+  // Stats
+  const albumCountEl = document.getElementById('albumCount');
+  const singleCountEl = document.getElementById('singleCount');
+  const concertCountEl = document.getElementById('concertCount');
+  const videoCountEl = document.getElementById('videoCount');
+  
+  const toPersian = (n) => {
+    const d = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    return String(n).replace(/\d/g, x => d[x]);
+  };
+  
+  // Update stats
+  function updateStats() {
+    const types = { 'آلبوم': 0, 'تک‌آهنگ': 0, 'کنسرت': 0, 'ویدیو': 0 };
+    cards.forEach(c => { const t = c.dataset.type; if (types[t] !== undefined) types[t]++; });
+    albumCountEl.textContent = toPersian(types['آلبوم']);
+    singleCountEl.textContent = toPersian(types['تک‌آهنگ']);
+    concertCountEl.textContent = toPersian(types['کنسرت']);
+    videoCountEl.textContent = toPersian(types['ویدیو']);
+  }
+  
+  let filters = { type: 'همه', genre: 'همه', instrument: 'همه' };
+  
+  function filterItems() {
+    const query = searchInput.value.trim().toLowerCase();
+    let visible = 0;
+    
+    cards.forEach(card => {
+      const type = card.dataset.type;
+      const genre = card.dataset.genre;
+      const instruments = card.dataset.instruments.split(',');
+      const title = card.dataset.title.toLowerCase();
+      const artist = card.dataset.artist.toLowerCase();
+      const desc = card.dataset.description.toLowerCase();
+      
+      const matchType = filters.type === 'همه' || type === filters.type;
+      const matchGenre = filters.genre === 'همه' || genre === filters.genre;
+      const matchInstrument = filters.instrument === 'همه' || instruments.includes(filters.instrument);
+      const matchSearch = !query || title.includes(query) || artist.includes(query) || desc.includes(query);
+      
+      if (matchType && matchGenre && matchInstrument && matchSearch) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    visibleCountEl.textContent = toPersian(visible);
+    emptyState.style.display = visible === 0 ? 'block' : 'none';
+    
+    // Update filter summary
+    const activeFilters = Object.entries(filters).filter(([,v]) => v !== 'همه');
+    if (activeFilters.length > 0 || query) {
+      filterSummary.style.display = 'flex';
+      filterTags.innerHTML = '';
+      activeFilters.forEach(([key, val]) => {
+        const label = key === 'type' ? 'نوع' : key === 'genre' ? 'ژانر' : 'ساز';
+        filterTags.innerHTML += '<span class="filter-summary-tag">' + label + ': ' + val + '</span>';
+      });
+      if (query) {
+        filterTags.innerHTML += '<span class="filter-summary-tag">جستجو: ' + query + '</span>';
+      }
+    } else {
+      filterSummary.style.display = 'none';
+    }
+  }
+  
+  // Filter chips
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filterKey = chip.dataset.filter;
+      const value = chip.dataset.value;
+      
+      // Update active state within group
+      document.querySelectorAll(`.filter-chip[data-filter="${filterKey}"]`).forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-checked', 'false');
+      });
+      chip.classList.add('active');
+      chip.setAttribute('aria-checked', 'true');
+      
+      filters[filterKey] = value;
+      filterItems();
+    });
+  });
+  
+  // Search
+  searchInput.addEventListener('input', filterItems);
+  
+  // Clear filters
+  clearFiltersBtn.addEventListener('click', () => {
+    filters = { type: 'همه', genre: 'همه', instrument: 'همه' };
+    searchInput.value = '';
+    document.querySelectorAll('.filter-chip').forEach(c => {
+      c.classList.remove('active');
+      c.setAttribute('aria-checked', 'false');
+    });
+    document.querySelectorAll('.filter-chip[data-value="همه"]').forEach(c => {
+      c.classList.add('active');
+      c.setAttribute('aria-checked', 'true');
+    });
+    filterItems();
+  });
+  
+  // Track toggle
+  document.querySelectorAll('.archive-tracks-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      const tracksList = toggle.nextElementSibling;
+      toggle.setAttribute('aria-expanded', !expanded);
+      tracksList.hidden = expanded;
+      toggle.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+    });
+  });
+  
+  // Init
+  updateStats();
+})();
+</script>

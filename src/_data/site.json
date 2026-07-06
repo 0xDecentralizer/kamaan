@@ -1,0 +1,24 @@
+{
+  "title": "کمان — موسیقی سنتی ایران",
+  "description": "خانه‌ی موسیقی سنتی ایران. گنجینه‌ای از کمانچه، سه‌تار و تار با صدای کیهان کلهر و دیگر هنرمندان بزرگ.",
+  "telegramUrl": "https://t.me/keyhankalhorkamanche",
+  "email": "info@kamaan.ir",
+  "channelStats": {
+    "members": "۶,۱۰۰+",
+    "organic": "۹۵٪",
+    "tracks": "۱۰۰+"
+  },
+  "url": "https://kamaan.pages.dev",
+  "ogImage": "/images/og-default.webp",
+  "social": {
+    "telegram": "https://t.me/keyhankalhorkamanche",
+    "instagram": "",
+    "twitter": "",
+    "youtube": ""
+  },
+  "author": {
+    "name": "کیهان کلهر",
+    "role": "نوازنده کمانچه",
+    "bio": "نوازنده‌ی برجسته‌ی کمانچه و از چهره‌های ماندگار موسیقی سنتی ایران"
+  }
+}
