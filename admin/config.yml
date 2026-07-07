@@ -5,51 +5,256 @@ backend:
 media_folder: "public/images"
 public_folder: "/images"
 
+# ═══════════════════════════════════════════
+# Collections
+# ═══════════════════════════════════════════
+
 collections:
+  # ─── Articles (folder collection) ───
   - name: "articles"
     label: "مقالات"
+    label_singular: "مقاله"
     folder: "src/articles"
     create: true
     slug: "{{slug}}"
+    summary: "{{title}} — {{category}}"
     preview_path: "/articles/{{slug}}/"
     fields:
-      - { label: "عنوان", name: "title", widget: "string" }
-      - { label: "توضیحات کوتاه", name: "excerpt", widget: "text" }
-      - { label: "دسته‌بندی", name: "category", widget: "select", options: ["تاریخ", "موسیقی", "شعر", "فرهنگ"] }
-      - { label: "تگ‌ها", name: "tags", widget: "list", allow_add: true, minimal: true }
-      - { label: "تصویر کاور", name: "image", widget: "image", required: false }
-      - { label: "متن مقاله", name: "body", widget: "markdown" }
-      - { label: "تاریخ انتشار", name: "date", widget: "datetime" }
-      - { label: "منتشر شده", name: "published", widget: "boolean", default: true }
+      - name: "title"
+        label: "عنوان"
+        widget: "string"
+        pattern: [".{5,200}", "عنوان باید ۵ تا ۲۰۰ کاراکتر باشد"]
+      - name: "excerpt"
+        label: "توضیحات کوتاه"
+        widget: "text"
+        pattern: [".{10,500}", "توضیحات باید ۱۰ تا ۵۰۰ کاراکتر باشد"]
+      - name: "category"
+        label: "دسته‌بندی"
+        widget: "select"
+        options:
+          - { label: "تاریخ", value: "تاریخ" }
+          - { label: "موسیقی", value: "موسیقی" }
+          - { label: "شعر", value: "شعر" }
+          - { label: "فرهنگ", value: "فرهنگ" }
+      - name: "tags"
+        label: "تگ‌ها"
+        widget: "list"
+        allow_add: true
+        minimal: true
+        hint: "تگ‌های مرتبط با مقاله را اضافه کنید"
+      - name: "image"
+        label: "تصویر کاور"
+        widget: "image"
+        required: false
+        hint: "تصویر شاخص مقاله (اختیاری)"
+      - name: "date"
+        label: "تاریخ انتشار"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - name: "published"
+        label: "منتشر شده"
+        widget: "boolean"
+        default: true
+        hint: "غیرفعال کردن این گزینه مقاله را از سایت مخفی می‌کند"
+      - name: "body"
+        label: "متن مقاله"
+        widget: "markdown"
+        hint: "متن اصلی مقاله را بنویسید"
 
+  # ─── Music Player (file collection — single JSON) ───
   - name: "music"
-    label: "موسیقی"
-    folder: "src/_data"
+    label: "پخش‌کننده موسیقی"
     files:
-      - name: "music"
-        label: "لیست موسیقی"
+      - name: "tracks"
+        label: "قطعات موسیقی"
         file: "src/_data/music.json"
+        description: "لیست قطعات موسیقی که در پخش‌کننده صفحه اصلی نمایش داده می‌شوند"
         fields:
-          - label: "آهنگ‌ها"
-            name: "tracks"
+          - name: "tracks"
+            label: "قطعات"
             widget: "list"
+            summary: "{{fields.title}} — {{fields.artist}}"
+            collapsed: false
             fields:
-              - { label: "عنوان", name: "title", widget: "string" }
-              - { label: "هنرمند", name: "artist", widget: "string" }
-              - { label: "ساز", name: "instrument", widget: "select", options: ["کمانچه", "سه‌تار", "تار", "نی", "سنتور"] }
-              - { label: "دستگاه", name: "dastgah", widget: "select", options: ["شور", "سه‌گاه", "چهارگاه", "ابوعطاء", "هیزج", "دشتی", "ماهور", "نوا"] }
-              - { label: "مدت زمان", name: "duration", widget: "string" }
-              - { label: "مدت زمان (ثانیه)", name: "durationSeconds", widget: "number" }
-              - { label: "لینک فایل صوتی", name: "url", widget: "string", required: false }
-              - { label: "تاریخ اضافه شدن", name: "dateAdded", widget: "datetime" }
-              - { label: "تگ‌ها", name: "tags", widget: "list", allow_add: true, minimal: true }
-          - label: "سازها"
-            name: "instruments"
+              - name: "title"
+                label: "عنوان قطعه"
+                widget: "string"
+              - name: "artist"
+                label: "هنرمند"
+                widget: "string"
+                default: "کیهان کلهر"
+              - name: "instrument"
+                label: "ساز اصلی"
+                widget: "select"
+                options:
+                  - { label: "کمانچه", value: "کمانچه" }
+                  - { label: "سه‌تار", value: "سه‌تار" }
+                  - { label: "تار", value: "تار" }
+                  - { label: "نی", value: "نی" }
+                  - { label: "سنتور", value: "سنتور" }
+              - name: "dastgah"
+                label: "دستگاه"
+                widget: "select"
+                options:
+                  - { label: "شور", value: "شور" }
+                  - { label: "سه‌گاه", value: "سه‌گاه" }
+                  - { label: "چهارگاه", value: "چهارگاه" }
+                  - { label: "ابوعطاء", value: "ابوعطاء" }
+                  - { label: "هیزج", value: "هیزج" }
+                  - { label: "دشتی", value: "دشتی" }
+                  - { label: "ماهور", value: "ماهور" }
+                  - { label: "نوا", value: "نوا" }
+                  - { label: "بیات ترک", value: "بیات ترک" }
+                  - { label: "بیات اصفهان", value: "بیات اصفهان" }
+                  - { label: "راست پنج‌گاه", value: "راست پنج‌گاه" }
+              - name: "duration"
+                label: "مدت زمان (م:ث)"
+                widget: "string"
+                pattern: ["^\\d{1,2}:\\d{2}$", "فرمت صحیح: ۴:۱۵"]
+                hint: "مثال: ۴:۱۵"
+              - name: "durationSeconds"
+                label: "مدت زمان (ثانیه)"
+                widget: "number"
+                hint: "برای محاسبه پیشرفت نوار پخش"
+              - name: "url"
+                label: "لینک فایل صوتی"
+                widget: "string"
+                required: false
+                hint: "لینک مستقیم فایل MP3. خالی گذاشتن = حالت پیش‌نمایش"
+              - name: "dateAdded"
+                label: "تاریخ اضافه شدن"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+              - name: "tags"
+                label: "تگ‌ها"
+                widget: "list"
+                allow_add: true
+                minimal: true
+          - name: "instruments"
+            label: "سازها (اطلاعاتی)"
             widget: "list"
+            summary: "{{fields.name}}"
+            hint: "اطلاعات توصیفی سازها — برای نمایش در بخش سازهای ایرانی"
             fields:
-              - { label: "نام ساز", name: "name", widget: "string" }
-              - { label: "توضیحات", name: "description", widget: "text" }
+              - name: "name"
+                label: "نام ساز"
+                widget: "string"
+              - name: "description"
+                label: "توضیحات"
+                widget: "text"
 
+  # ─── Archive (file collection — single JSON) ───
+  - name: "archive"
+    label: "آرشیو"
+    files:
+      - name: "archive"
+        label: "آیتم‌های آرشیو"
+        file: "src/_data/archive.json"
+        description: "آلبوم‌ها، تک‌آهنگ‌ها، کنسرت‌ها و ویدیوها"
+        fields:
+          - name: "genres"
+            label: "ژانرها"
+            widget: "list"
+            minimal: true
+            hint: "لیست ژانرهای موجود برای فیلتر"
+          - name: "instruments"
+            label: "سازها (فیلتر)"
+            widget: "list"
+            minimal: true
+            hint: "لیست سازها برای فیلتر (اولی باید 'همه' باشد)"
+          - name: "types"
+            label: "انواع"
+            widget: "list"
+            minimal: true
+            hint: "لیست انواع محتوا برای فیلتر (اولی باید 'همه' باشد)"
+          - name: "items"
+            label: "آیتم‌ها"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.type}}"
+            collapsed: false
+            fields:
+              - name: "id"
+                label: "شناسه (ID)"
+                widget: "string"
+                hint: "شناسه یکتا به انگلیسی، با خط تیره. مثال: shor-kamancheh"
+                pattern: ["^[a-z0-9\\-]+$", "فقط حروف کوچک انگلیسی، اعداد و خط تیره"]
+              - name: "title"
+                label: "عنوان"
+                widget: "string"
+              - name: "type"
+                label: "نوع"
+                widget: "select"
+                options:
+                  - { label: "آلبوم", value: "آلبوم" }
+                  - { label: "تک‌آهنگ", value: "تک‌آهنگ" }
+                  - { label: "کنسرت", value: "کنسرت" }
+                  - { label: "ویدیو", value: "ویدیو" }
+              - name: "artist"
+                label: "هنرمند"
+                widget: "string"
+                default: "کیهان کلهر"
+              - name: "instruments"
+                label: "سازها"
+                widget: "list"
+                allow_add: true
+                minimal: true
+              - name: "dastgah"
+                label: "دستگاه"
+                widget: "select"
+                allow_blank: true
+                options:
+                  - { label: "— بدون دستگاه —", value: "" }
+                  - { label: "شور", value: "شور" }
+                  - { label: "سه‌گاه", value: "سه‌گاه" }
+                  - { label: "چهارگاه", value: "چهارگاه" }
+                  - { label: "ابوعطاء", value: "ابوعطاء" }
+                  - { label: "هیزج", value: "هیزج" }
+                  - { label: "دشتی", value: "دشتی" }
+                  - { label: "ماهور", value: "ماهور" }
+                  - { label: "نوا", value: "نوا" }
+                  - { label: "بیات ترک", value: "بیات ترک" }
+                  - { label: "بیات اصفهان", value: "بیات اصفهان" }
+              - name: "genre"
+                label: "ژانر"
+                widget: "select"
+                options:
+                  - { label: "کلاسیک ایرانی", value: "کلاسیک ایرانی" }
+                  - { label: "عشقی", value: "عشقی" }
+                  - { label: "عرفانی", value: "عرفانی" }
+                  - { label: "بزمی", value: "بزمی" }
+                  - { label: "حماسی", value: "حماسی" }
+              - name: "year"
+                label: "سال (فارسی)"
+                widget: "string"
+                hint: "مثال: ۱۴۰۳"
+                pattern: ["^\\d{4}$", "فقط ۴ رقم فارسی"]
+              - name: "description"
+                label: "توضیحات"
+                widget: "text"
+              - name: "tracks"
+                label: "لیست قطعات"
+                widget: "list"
+                required: false
+                hint: "فقط برای آلبوم و کنسرت"
+                fields:
+                  - name: "title"
+                    label: "عنوان قطعه"
+                    widget: "string"
+                  - name: "duration"
+                    label: "مدت زمان"
+                    widget: "string"
+                    pattern: ["^\\d{1,2}:\\d{2}$", "فرمت صحیح: ۴:۱۵"]
+              - name: "tags"
+                label: "تگ‌ها"
+                widget: "list"
+                allow_add: true
+                minimal: true
+
+  # ─── Site Settings (file collection) ───
   - name: "settings"
     label: "تنظیمات"
     files:
@@ -57,31 +262,47 @@ collections:
         label: "تنظیمات سایت"
         file: "src/_data/site.json"
         fields:
-          - { label: "عنوان سایت", name: "title", widget: "string" }
-          - { label: "توضیحات", name: "description", widget: "text" }
-          - { label: "آدرس سایت", name: "url", widget: "string" }
-          - { label: "لینک تلگرام", name: "telegramUrl", widget: "string" }
-          - { label: "ایمیل", name: "email", widget: "string" }
-          - { label: "تصویر OG", name: "ogImage", widget: "string" }
-          - label: "آمار کانال"
-            name: "channelStats"
+          - name: "title"
+            label: "عنوان سایت"
+            widget: "string"
+          - name: "description"
+            label: "توضیحات سایت (SEO)"
+            widget: "text"
+            hint: "توضیحات کوتاه برای موتورهای جستجو"
+          - name: "url"
+            label: "آدرس سایت"
+            widget: "string"
+            hint: "مثال: https://kamanche.netlify.app"
+          - name: "telegramUrl"
+            label: "لینک تلگرام"
+            widget: "string"
+            hint: "لینک کانال تلگرام"
+          - name: "email"
+            label: "ایمیل"
+            widget: "string"
+          - name: "ogImage"
+            label: "تصویر پیش‌فرض OG"
+            widget: "string"
+            hint: "مسیر تصویر برای شبکه‌های اجتماعی"
+          - name: "channelStats"
+            label: "آمار کانال"
             widget: "object"
             fields:
-              - { label: "تعداد عضو", name: "members", widget: "string" }
-              - { label: "درصد ارگانیک", name: "organic", widget: "string" }
-              - { label: "تعداد موسیقی", name: "tracks", widget: "string" }
-          - label: "نویسنده"
-            name: "author"
+              - { label: "تعداد عضو", name: "members", widget: "string", hint: "مثال: ۶,۱۰۰+" }
+              - { label: "درصد ارگانیک", name: "organic", widget: "string", hint: "مثال: ۹۵٪" }
+              - { label: "تعداد موسیقی", name: "tracks", widget: "string", hint: "مثال: ۱۰۰+" }
+          - name: "author"
+            label: "نویسنده"
             widget: "object"
             fields:
               - { label: "نام", name: "name", widget: "string" }
               - { label: "عنوان", name: "role", widget: "string" }
               - { label: "بیوگرافی", name: "bio", widget: "text" }
-          - label: "شبکه‌های اجتماعی"
-            name: "social"
+          - name: "social"
+            label: "شبکه‌های اجتماعی"
             widget: "object"
             fields:
               - { label: "تلگرام", name: "telegram", widget: "string" }
-              - { label: "اینستاگرام", name: "instagram", widget: "string" }
-              - { label: "توییتر", name: "twitter", widget: "string" }
-              - { label: "یوتیوب", name: "youtube", widget: "string" }
+              - { label: "اینستاگرام", name: "instagram", widget: "string", required: false }
+              - { label: "توییتر", name: "twitter", widget: "string", required: false }
+              - { label: "یوتیوب", name: "youtube", widget: "string", required: false }
