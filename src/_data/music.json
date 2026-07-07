@@ -1,59 +1,80 @@
 {
   "tracks": [
     {
-      "title": "آوای کمانچه — قسمت اول",
       "artist": "کیهان کلهر",
       "instrument": "کمانچه",
-      "dastgah": "شور",
-      "duration": "۴:۱۵",
       "durationSeconds": 255,
-      "url": "",
+      "url": "https://dl.boxmusics.ir/songs/400/5/Dastgah%20E%20Nava-I%20-%20Lotfi.mp3",
+      "dastgah": "شور",
       "dateAdded": "2024-05-15",
-      "tags": ["کمانچه", "شور", "بی‌کلام"]
+      "duration": "4:15",
+      "title": "آوای کمانچه — قسمت اول",
+      "tags": [
+        "کمانچه",
+        "شور",
+        "بی‌کلام"
+      ]
     },
     {
-      "title": "سه‌تار — شور",
       "artist": "کیهان کلهر",
       "instrument": "سه‌تار",
-      "dastgah": "شور",
-      "duration": "۵:۳۲",
       "durationSeconds": 332,
       "url": "",
+      "dastgah": "شور",
       "dateAdded": "2024-05-10",
-      "tags": ["سه‌تار", "شور", "بی‌کلام"]
+      "duration": "4:15",
+      "title": "سه‌تار — شور",
+      "tags": [
+        "سه‌تار",
+        "شور",
+        "بی‌کلام"
+      ]
     },
     {
-      "title": "تار — چهارگاه",
       "artist": "کیهان کلهر",
       "instrument": "تار",
-      "dastgah": "چهارگاه",
-      "duration": "۶:۰۸",
       "durationSeconds": 368,
       "url": "",
+      "dastgah": "چهارگاه",
       "dateAdded": "2024-05-05",
-      "tags": ["تار", "چهارگاه", "بی‌کلام"]
+      "duration": "4:15",
+      "title": "تار — چهارگاه",
+      "tags": [
+        "تار",
+        "چهارگاه",
+        "بی‌کلام"
+      ]
     },
     {
-      "title": "کمانچه — سه‌گاه",
       "artist": "کیهان کلهر",
       "instrument": "کمانچه",
-      "dastgah": "سه‌گاه",
-      "duration": "۳:۵۱",
       "durationSeconds": 231,
       "url": "",
+      "dastgah": "سه‌گاه",
       "dateAdded": "2024-04-01",
-      "tags": ["کمانچه", "سه‌گاه", "بی‌کلام"]
+      "duration": "4:15",
+      "title": "کمانچه — سه‌گاه",
+      "tags": [
+        "کمانچه",
+        "سه‌گاه",
+        "بی‌کلام"
+      ]
     },
     {
-      "title": "شب — ابوعطاء",
       "artist": "کیهان کلهر",
       "instrument": "کمانچه",
-      "dastgah": "ابوعطاء",
-      "duration": "۷:۲۰",
       "durationSeconds": 440,
       "url": "",
+      "dastgah": "ابوعطاء",
       "dateAdded": "2024-03-15",
-      "tags": ["کمانچه", "ابوعطاء", "شب", "بی‌کلام"]
+      "duration": "4:15",
+      "title": "شب — ابوعطاء",
+      "tags": [
+        "کمانچه",
+        "ابوعطاء",
+        "شب",
+        "بی‌کلام"
+      ]
     }
   ],
   "instruments": [
